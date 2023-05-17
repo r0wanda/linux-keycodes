@@ -1,0 +1,24 @@
+{
+  "name": "linux-keycodes",
+  "version": "1.0.0",
+  "description": "Linux keycodes",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cookey-dev/linux-keycodes.git"
+  },
+  "keywords": [
+    "keyboard",
+    "keycodes",
+    "linux"
+  ],
+  "author": "Rowan",
+  "license": "GPL-2.0-only WITH Linux-syscall-note",
+  "bugs": {
+    "url": "https://github.com/cookey-dev/linux-keycodes/issues"
+  },
+  "homepage": "https://github.com/cookey-dev/linux-keycodes#readme"
+}

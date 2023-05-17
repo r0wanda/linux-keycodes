@@ -19,7 +19,7 @@
  * the Free Software Foundation.
  */
 
-const keys = {
+const baseKeys = {
     INPUT_PROP_POINTER: 0x00, /* needs a pointer */
     INPUT_PROP_DIRECT: 0x01, /* direct input devices */
     INPUT_PROP_BUTTONPAD: 0x02, /* has button(s) under pad */
@@ -29,7 +29,6 @@ const keys = {
     INPUT_PROP_ACCELEROMETER: 0x06, /* has accelerometer */
 
     INPUT_PROP_MAX: 0x1f,
-    INPUT_PROP_CNT: (INPUT_PROP_MAX + 1),
 
     /*
      * Event types
@@ -48,7 +47,6 @@ const keys = {
     EV_PWR: 0x16,
     EV_FF_STATUS: 0x17,
     EV_MAX: 0x1f,
-    EV_CNT: (EV_MAX + 1),
 
     /*
      * Synchronization events.
@@ -59,7 +57,6 @@ const keys = {
     SYN_MT_REPORT: 2,
     SYN_DROPPED: 3,
     SYN_MAX: 0xf,
-    SYN_CNT: (SYN_MAX + 1),
 
     /*
      * Keys and buttons
@@ -196,7 +193,7 @@ const keys = {
 
     KEY_KPCOMMA: 121,
     KEY_HANGEUL: 122,
-    KEY_HANGUEL: KEY_HANGEUL,
+    KEY_HANGUEL: 122, /* Original value was "KEY_HANGEUL" */
     KEY_HANJA: 123,
     KEY_YEN: 124,
     KEY_LEFTMETA: 125,
@@ -228,9 +225,9 @@ const keys = {
     KEY_WWW: 150, /* AL Internet Browser */
     KEY_MSDOS: 151,
     KEY_COFFEE: 152, /* AL Terminal Lock/Screensaver */
-    KEY_SCREENLOCK: KEY_COFFEE,
+    KEY_SCREENLOCK: 152, /* Original value was "KEY_COFFEE" */
     KEY_ROTATE_DISPLAY: 153, /* Display orientation for e.g. tablets */
-    KEY_DIRECTION: KEY_ROTATE_DISPLAY,
+    KEY_DIRECTION: 153, /* Original value was "KEY_ROTATE_DISPLAY" */
     KEY_CYCLEWINDOWS: 154,
     KEY_MAIL: 155,
     KEY_BOOKMARKS: 156, /* AC Bookmarks */
@@ -279,7 +276,7 @@ const keys = {
     KEY_PROG3: 202,
     KEY_PROG4: 203,
     KEY_ALL_APPLICATIONS: 204, /* AC Desktop Show All Applications */
-    KEY_DASHBOARD: KEY_ALL_APPLICATIONS,
+    KEY_DASHBOARD: 204, /* Original value was "KEY_ALL_APPLICATIONS" */
     KEY_SUSPEND: 205,
     KEY_CLOSE: 206, /* AC Close */
     KEY_PLAY: 207,
@@ -326,11 +323,11 @@ const keys = {
     KEY_VIDEO_PREV: 242, /* drive previous video source */
     KEY_BRIGHTNESS_CYCLE: 243, /* brightness up, after max is min */
     KEY_BRIGHTNESS_AUTO: 244, /* Set Auto Brightness: manual, brightness control is off, rely on ambient */
-    KEY_BRIGHTNESS_ZERO: KEY_BRIGHTNESS_AUTO,
+    KEY_BRIGHTNESS_ZERO: 244, /* Original value was "KEY_BRIGHTNESS_AUTO" */
     KEY_DISPLAY_OFF: 245, /* display device to off state */
 
     KEY_WWAN: 246, /* Wireless WAN (LTE, UMTS, GSM, etc.) */
-    KEY_WIMAX: KEY_WWAN,
+    KEY_WIMAX: 246, /* Original value was "KEY_WWAN" */
     KEY_RFKILL: 247, /* Key that controls all radios */
 
     KEY_MICMUTE: 248, /* Mute, / unmute the microphone */
@@ -376,14 +373,14 @@ const keys = {
 
     BTN_GAMEPAD: 0x130,
     BTN_SOUTH: 0x130,
-    BTN_A: BTN_SOUTH,
+    BTN_A: 0x130, /* Original value was "BTN_SOUTH" */
     BTN_EAST: 0x131,
-    BTN_B: BTN_EAST,
+    BTN_B: 0x131, /* Original value was "BTN_EAST" */
     BTN_C: 0x132,
     BTN_NORTH: 0x133,
-    BTN_X: BTN_NORTH,
+    BTN_X: 0x133, /* Original value was "BTN_NORTH" */
     BTN_WEST: 0x134,
-    BTN_Y: BTN_WEST,
+    BTN_Y: 0x134, /* Original value was "BTN_WEST" */
     BTN_Z: 0x135,
     BTN_TL: 0x136,
     BTN_TR: 0x137,
@@ -438,11 +435,11 @@ const keys = {
     KEY_SUBTITLE: 0x172,
     KEY_ANGLE: 0x173,
     KEY_FULL_SCREEN: 0x174, /* AC View Toggle */
-    KEY_ZOOM: KEY_FULL_SCREEN,
+    KEY_ZOOM: 0x174, /* Original value was "KEY_FULL_SCREEN" */
     KEY_MODE: 0x175,
     KEY_KEYBOARD: 0x176,
     KEY_ASPECT_RATIO: 0x177, /* HUTRR37: Aspect */
-    KEY_SCREEN: KEY_ASPECT_RATIO,
+    KEY_SCREEN: 0x177, /* Original value was "KEY_ASPECT_RATIO" */
     KEY_PC: 0x178, /* Media Select Computer */
     KEY_TV: 0x179, /* Media Select TV */
     KEY_TV2: 0x17a, /* Media Select Cable */
@@ -499,7 +496,7 @@ const keys = {
     KEY_ADDRESSBOOK: 0x1ad, /* AL Contacts/Address Book */
     KEY_MESSENGER: 0x1ae, /* AL Instant Messaging */
     KEY_DISPLAYTOGGLE: 0x1af, /* Turn display (LCD) on and off */
-    KEY_BRIGHTNESS_TOGGLE: KEY_DISPLAYTOGGLE,
+    KEY_BRIGHTNESS_TOGGLE: 0x1af, /* Original value was "KEY_DISPLAYTOGGLE" */
     KEY_SPELLCHECK: 0x1b0, /* AL Spell Check */
     KEY_LOGOFF: 0x1b1, /* AL Logoff */
 
@@ -801,9 +798,8 @@ const keys = {
     BTN_TRIGGER_HAPPY40: 0x2e7,
 
     /* We avoid low common keys in module aliases so they don't get huge. */
-    KEY_MIN_INTERESTING: KEY_MUTE,
+    KEY_MIN_INTERESTING: 113, /* Original value was "KEY_MUTE" */
     KEY_MAX: 0x2ff,
-    KEY_CNT: (KEY_MAX + 1),
 
     /*
      * Relative axes
@@ -830,7 +826,6 @@ const keys = {
     REL_WHEEL_HI_RES: 0x0b,
     REL_HWHEEL_HI_RES: 0x0c,
     REL_MAX: 0x0f,
-    REL_CNT: (REL_MAX + 1),
 
     /*
      * Absolute axes
@@ -893,7 +888,6 @@ const keys = {
 
 
     ABS_MAX: 0x3f,
-    ABS_CNT: (ABS_MAX + 1),
 
     /*
      * Switch events
@@ -904,7 +898,7 @@ const keys = {
     SW_HEADPHONE_INSERT: 0x02, /* set = inserted */
     SW_RFKILL_ALL: 0x03, /* rfkill master switch, type "any",
 :  set = radio enabled */
-    SW_RADIO: SW_RFKILL_ALL, /* deprecated */
+    SW_RADIO: 0x03, /* deprecated */ /* Original value was "KEY_RFKILL_ALL" */
     SW_MICROPHONE_INSERT: 0x04, /* set = inserted */
     SW_DOCK: 0x05, /* set = plugged into dock */
     SW_LINEOUT_INSERT: 0x06, /* set = inserted */
@@ -919,7 +913,6 @@ const keys = {
     SW_PEN_INSERTED: 0x0f, /* set = pen inserted */
     SW_MACHINE_COVER: 0x10, /* set = cover closed */
     SW_MAX: 0x10,
-    SW_CNT: (SW_MAX + 1),
 
     /*
      * Misc events
@@ -932,7 +925,6 @@ const keys = {
     MSC_SCAN: 0x04,
     MSC_TIMESTAMP: 0x05,
     MSC_MAX: 0x07,
-    MSC_CNT: (MSC_MAX + 1),
 
     /*
      * LEDs
@@ -950,7 +942,6 @@ const keys = {
     LED_MAIL: 0x09,
     LED_CHARGING: 0x0a,
     LED_MAX: 0x0f,
-    LED_CNT: (LED_MAX + 1),
 
     /*
      * Autorepeat values
@@ -959,7 +950,6 @@ const keys = {
     REP_DELAY: 0x00,
     REP_PERIOD: 0x01,
     REP_MAX: 0x01,
-    REP_CNT: (REP_MAX + 1),
 
     /*
      * Sounds
@@ -969,5 +959,26 @@ const keys = {
     SND_BELL: 0x01,
     SND_TONE: 0x02,
     SND_MAX: 0x07,
-    SND_CNT: (SND_MAX + 1),
 }
+
+const keys = {
+    ...baseKeys,
+    INPUT_PROP_CNT: baseKeys.INPUT_PROP_MAX + 1,
+    EV_CNT: baseKeys.EV_MAX + 1,
+    SYN_CNT: baseKeys.SYN_MAX + 1,
+    KEY_CNT: baseKeys.KEY_MAX + 1,
+    REL_CNT: baseKeys.REL_MAX + 1,
+    ABS_CNT: baseKeys.ABS_MAX + 1,
+    SW_CNT: baseKeys.SW_MAX + 1,
+    MSC_CNT: baseKeys.MSC_MAX + 1,
+    LED_CNT: baseKeys.LED_MAX + 1,
+    REP_CNT: baseKeys.REP_MAX + 1,
+    SND_CNT: baseKeys.SND_MAX + 1,
+}
+
+function fromCode(code) {
+    const ix = Object.values(keys).indexOf(code);
+    return ix >= 0 ? Object.keys(keys)[ix] : undefined;
+}
+
+export { keys, fromCode };
