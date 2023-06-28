@@ -58,7 +58,7 @@ function parse(verbose, inf = HFILE, out = JFILE) {
         if (!l.startsWith('#define')) continue;
         l = l.split(/\s/);
         l = l.filter(rBlank);
-        spin.text = `Processing event ${l[1]}`;
+        if (verbose) spin.text = `Processing event ${l[1]}`;
         while (true) {
             var cIdx = l.indexOf('/*')
             if (cIdx === -1) break;
@@ -82,7 +82,7 @@ function parse(verbose, inf = HFILE, out = JFILE) {
 
 async function gen(verbose = false) {
     await dl(verbose);
-    await parse(verbose);
+    parse(verbose);
 }
 
 export default gen;
