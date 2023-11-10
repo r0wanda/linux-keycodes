@@ -2,4 +2,6 @@ node_modules
 yarn.lock
 codes.h
 codes.json
-dist
+.vscode
+dist/codes.h
+dist/codes.json
