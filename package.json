@@ -1,6 +1,6 @@
 {
   "name": "linux-keycodes",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Linux keycodes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
